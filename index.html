@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yash Barwal — Full Stack Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0a0a0f;--bg2:#111118;--bg3:#16161e;--border:#ffffff12;--text:#e8e8f0;--muted:#8888a0;--accent:#6c63ff;--accent2:#a78bfa;--green:#4ade80;--card:#13131a}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;scroll-behavior:smooth}
+a{text-decoration:none;color:inherit}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;background:rgba(10,10,15,0.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.logo{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:800;background:linear-gradient(135deg,#6c63ff,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-links{display:flex;gap:2rem}
+.nav-links a{font-size:0.85rem;color:var(--muted);transition:color 0.2s}
+.nav-links a:hover{color:var(--text)}
+section{padding:5rem 2rem;max-width:900px;margin:0 auto}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding-top:6rem}
+.badge{display:inline-flex;align-items:center;gap:0.5rem;padding:0.4rem 1rem;border:1px solid var(--border);border-radius:99px;font-size:0.75rem;color:var(--muted);margin-bottom:1.5rem}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+h1{font-family:'Syne',sans-serif;font-size:clamp(2.5rem,6vw,4.5rem);font-weight:800;line-height:1.1;margin-bottom:1rem}
+.gradient-text{background:linear-gradient(135deg,#6c63ff,#a78bfa,#e879f9);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{font-size:1.1rem;color:var(--muted);max-width:520px;margin-bottom:2.5rem;line-height:1.8}
+.btn-group{display:flex;gap:1rem;flex-wrap:wrap}
+.btn{padding:0.75rem 1.75rem;border-radius:10px;font-size:0.9rem;font-weight:500;cursor:pointer;transition:all 0.2s;border:none}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:#5a52e0;transform:translateY(-1px)}
+.btn-outline{background:transparent;color:var(--text);border:1px solid var(--border)}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:3rem;padding-top:3rem;border-top:1px solid var(--border)}
+.stat-num{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--accent2)}
+.stat-label{font-size:0.8rem;color:var(--muted);margin-top:0.2rem}
+h2{font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;margin-bottom:0.5rem}
+.section-sub{color:var(--muted);font-size:0.9rem;margin-bottom:3rem}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start}
+.about-text p{color:var(--muted);line-height:1.9;margin-bottom:1rem;font-size:0.95rem}
+.info-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem}
+.info-row{display:flex;justify-content:space-between;padding:0.6rem 0;border-bottom:1px solid var(--border);font-size:0.85rem}
+.info-row:last-child{border:none}
+.info-label{color:var(--muted)}
+.info-val{color:var(--text);font-weight:500}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem}
+.skill-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.25rem;transition:border-color 0.2s,transform 0.2s}
+.skill-card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.skill-icon{font-size:1.5rem;margin-bottom:0.75rem}
+.skill-name{font-size:0.9rem;font-weight:500;margin-bottom:0.5rem}
+.skill-bar{height:3px;background:var(--border);border-radius:99px;overflow:hidden}
+.skill-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:99px}
+.projects-grid{display:grid;grid-template-columns:1fr;gap:1.5rem}
+.project-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.75rem;transition:border-color 0.2s,transform 0.2s;position:relative;overflow:hidden}
+.project-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));opacity:0;transition:opacity 0.2s}
+.project-card:hover{border-color:rgba(108,99,255,0.3);transform:translateY(-3px)}
+.project-card:hover::before{opacity:1}
+.project-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.75rem}
+.project-title{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700}
+.project-links{display:flex;gap:0.5rem}
+.icon-btn{width:32px;height:32px;border-radius:8px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:0.85rem;transition:border-color 0.2s;cursor:pointer;background:transparent;color:var(--text);text-decoration:none}
+.icon-btn:hover{border-color:var(--accent);color:var(--accent)}
+.project-desc{color:var(--muted);font-size:0.88rem;line-height:1.7;margin-bottom:1rem}
+.tags{display:flex;flex-wrap:wrap;gap:0.5rem}
+.tag{padding:0.25rem 0.75rem;border-radius:99px;font-size:0.75rem;background:var(--bg3);border:1px solid var(--border);color:var(--muted)}
+.edu-timeline{position:relative;padding-left:1.5rem}
+.edu-timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:var(--border)}
+.edu-item{position:relative;margin-bottom:2rem;padding-left:1rem}
+.edu-item::before{content:'';position:absolute;left:-1.6rem;top:0.4rem;width:10px;height:10px;border-radius:50%;background:var(--accent);border:2px solid var(--bg)}
+.edu-year{font-size:0.75rem;color:var(--accent);font-weight:500;margin-bottom:0.3rem}
+.edu-degree{font-size:1rem;font-weight:500;margin-bottom:0.2rem}
+.edu-school{font-size:0.85rem;color:var(--muted)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.contact-info{display:flex;flex-direction:column;gap:1rem}
+.contact-item{display:flex;align-items:center;gap:1rem;padding:1rem;background:var(--card);border:1px solid var(--border);border-radius:12px;font-size:0.9rem}
+.contact-icon{width:36px;height:36px;border-radius:8px;background:var(--bg3);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.contact-label{font-size:0.75rem;color:var(--muted)}
+.contact-val{font-size:0.9rem;font-weight:500}
+form{display:flex;flex-direction:column;gap:1rem}
+input,textarea{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:0.85rem 1rem;color:var(--text);font-family:'Inter',sans-serif;font-size:0.9rem;outline:none;transition:border-color 0.2s;resize:none}
+input:focus,textarea:focus{border-color:var(--accent)}
+input::placeholder,textarea::placeholder{color:var(--muted)}
+.social-bar{display:flex;gap:1rem;margin-top:1.5rem;flex-wrap:wrap}
+.social-btn{display:flex;align-items:center;gap:0.5rem;padding:0.6rem 1.2rem;border:1px solid var(--border);border-radius:10px;font-size:0.82rem;color:var(--muted);transition:all 0.2s;background:var(--card);text-decoration:none}
+.social-btn:hover{border-color:var(--accent);color:var(--accent)}
+footer{text-align:center;padding:2rem;border-top:1px solid var(--border);color:var(--muted);font-size:0.82rem}
+@media(max-width:640px){.about-grid,.contact-grid{grid-template-columns:1fr}.nav-links{display:none}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">YB.</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#education">Education</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a href="mailto:yashbarwal898@gmail.com" class="btn btn-primary" style="padding:0.5rem 1.2rem;font-size:0.82rem">Hire Me</a>
+</nav>
+
+<section class="hero" id="home">
+  <div class="badge"><span class="dot"></span> Open to work</div>
+  <h1>Hi, I'm <span class="gradient-text">Yash Barwal</span></h1>
+  <h1 style="color:var(--muted);font-size:clamp(1.8rem,4vw,3rem)">Full Stack Developer</h1>
+  <p style="margin-top:1.25rem">I build modern web applications with clean code and great user experiences. Passionate about AI, databases, and turning ideas into real products.</p>
+  <div class="btn-group">
+    <a href="#projects" class="btn btn-primary">View My Work</a>
+    <a href="#contact" class="btn btn-outline">Contact Me</a>
+  </div>
+  <div class="stats">
+    <div><div class="stat-num">3+</div><div class="stat-label">Projects Built</div></div>
+    <div><div class="stat-num">5+</div><div class="stat-label">Technologies</div></div>
+    <div><div class="stat-num">100%</div><div class="stat-label">Passion</div></div>
+  </div>
+</section>
+
+<section id="about">
+  <h2>About <span class="gradient-text">Me</span></h2>
+  <p class="section-sub">A little bit about who I am</p>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I'm Yash Barwal, a passionate Full Stack Developer from Maharashtra, India. I love building things for the web — from sleek frontends to powerful backends and AI-powered applications.</p>
+      <p>I recently built <strong style="color:var(--accent2)">Aura</strong>, an AI-powered search engine similar to Perplexity AI, using React.js, Flask, Groq AI, and DuckDuckGo API — deployed live on Vercel and Render.</p>
+      <p>I enjoy solving real problems with code and I'm always learning new technologies to stay ahead in the field.</p>
+      <div class="social-bar">
+        <a href="https://github.com/Yash-45-18" target="_blank" class="social-btn">GitHub</a>
+        <a href="https://www.linkedin.com/in/yash-barwal-b681992a7 " target="_blank" class="social-btn">LinkedIn</a>
+        <a href="https://twitter.com" target="_blank" class="social-btn">Twitter</a>
+      </div>
+    </div>
+    <div class="info-card">
+      <div class="info-row"><span class="info-label">Name</span><span class="info-val">Yash Barwal</span></div>
+      <div class="info-row"><span class="info-label">Location</span><span class="info-val">Maharashtra, India</span></div>
+      <div class="info-row"><span class="info-label">Role</span><span class="info-val">Full Stack Developer</span></div>
+      <div class="info-row"><span class="info-label">Email</span><span class="info-val">yashbarwal898@gmail.com</span></div>
+      <div class="info-row"><span class="info-label">GitHub</span><span class="info-val">Yash-45-18</span></div>
+      <div class="info-row"><span class="info-label">Status</span><span class="info-val" style="color:var(--green)">● Available</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <h2>My <span class="gradient-text">Skills</span></h2>
+  <p class="section-sub">Technologies I work with</p>
+  <div class="skills-grid">
+    <div class="skill-card"><div class="skill-icon">⚛️</div><div class="skill-name">React.js</div><div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div></div>
+    <div class="skill-card"><div class="skill-icon">🐍</div><div class="skill-name">Python & Flask</div><div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div></div>
+    <div class="skill-card"><div class="skill-icon">☕</div><div class="skill-name">Java</div><div class="skill-bar"><div class="skill-fill" style="width:70%"></div></div></div>
+    <div class="skill-card"><div class="skill-icon">🗄️</div><div class="skill-name">Databases (SQL)</div><div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div></div>
+    <div class="skill-card"><div class="skill-icon">🌐</div><div class="skill-name">HTML & CSS</div><div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div></div>
+    <div class="skill-card"><div class="skill-icon">💛</div><div class="skill-name">JavaScript</div><div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div></div>
+    <div class="skill-card"><div class="skill-icon">🤖</div><div class="skill-name">AI & LLM APIs</div><div class="skill-bar"><div class="skill-fill" style="width:70%"></div></div></div>
+    <div class="skill-card"><div class="skill-icon">🐙</div><div class="skill-name">Git & GitHub</div><div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div></div>
+  </div>
+</section>
+
+<section id="projects">
+  <h2>My <span class="gradient-text">Projects</span></h2>
+  <p class="section-sub">Things I have built</p>
+  <div class="projects-grid">
+    <div class="project-card">
+      <div class="project-header">
+        <div>
+          <div style="font-size:0.75rem;color:var(--accent);margin-bottom:0.3rem">Featured Project</div>
+          <div class="project-title">Aura — AI Search Engine</div>
+        </div>
+        <div class="project-links">
+          <a href="https://aura-ai-search-coral.vercel.app" target="_blank" class="icon-btn" title="Live Demo">↗</a>
+          <a href="https://github.com/Yash-45-18/aura-ai-search" target="_blank" class="icon-btn" title="GitHub">⌥</a>
+        </div>
+      </div>
+      <p class="project-desc">A full-stack AI-powered search engine similar to Perplexity AI. Combines real-time web search with Llama 3.1 AI to deliver cited, conversational answers. Features dark/light mode, chat history, and follow-up questions.</p>
+      <div class="tags">
+        <span class="tag">React.js</span><span class="tag">Python Flask</span><span class="tag">Groq AI</span><span class="tag">DuckDuckGo API</span><span class="tag">Tailwind CSS</span><span class="tag">Vercel</span><span class="tag">Render</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-title">Portfolio Website</div>
+        <div class="project-links">
+          <a href="https://github.com/Yash-45-18" target="_blank" class="icon-btn">⌥</a>
+        </div>
+      </div>
+      <p class="project-desc">A modern, minimal personal portfolio website showcasing projects, skills, and contact information. Built with clean HTML, CSS, and JavaScript with a dark theme.</p>
+      <div class="tags">
+        <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <h2>My <span class="gradient-text">Education</span></h2>
+  <p class="section-sub">My academic background</p>
+  <div class="edu-timeline">
+    <div class="edu-item">
+      <div class="edu-year">2022 — Present</div>
+      <div class="edu-degree">Bachelor of Science — Computer Science</div>
+      <div class="edu-school">Maharashtra, India</div>
+    </div>
+    <div class="edu-item">
+      <div class="edu-year">2020 — 2022</div>
+      <div class="edu-degree">Higher Secondary Certificate (HSC)</div>
+      <div class="edu-school">Maharashtra Board</div>
+    </div>
+    <div class="edu-item">
+      <div class="edu-year">2019 — 2020</div>
+      <div class="edu-degree">Secondary School Certificate (SSC)</div>
+      <div class="edu-school">Maharashtra Board</div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Get In <span class="gradient-text">Touch</span></h2>
+  <p class="section-sub">Let's work together or just say hello</p>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <div class="contact-item">
+        <div class="contact-icon">✉</div>
+        <div><div class="contact-label">Email</div><div class="contact-val">yashbarwal898@gmail.com</div></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <div><div class="contact-label">Location</div><div class="contact-val">Maharashtra, India</div></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">⌥</div>
+        <div><div class="contact-label">GitHub</div><div class="contact-val">github.com/Yash-45-18</div></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">in</div>
+        <div><div class="contact-label">LinkedIn</div><div class="contact-val">Yash Barwal</div></div>
+      </div>
+    </div>
+    <form onsubmit="handleSubmit(event)">
+      <input type="text" placeholder="Your Name" required />
+      <input type="email" placeholder="Your Email" required />
+      <input type="text" placeholder="Subject" />
+      <textarea rows="4" placeholder="Your Message" required></textarea>
+      <button type="submit" class="btn btn-primary" style="width:100%;cursor:pointer">Send Message →</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <p>Designed & Built by <span style="color:var(--accent2)">Yash Barwal</span> · 2026</p>
+  <p style="margin-top:0.5rem;font-size:0.75rem">Full Stack Developer · Maharashtra, India</p>
+</footer>
+
+<script>
+function handleSubmit(e){
+  e.preventDefault();
+  const btn=e.target.querySelector('button');
+  btn.textContent='Message Sent! ✓';
+  btn.style.background='#4ade80';
+  setTimeout(()=>{btn.textContent='Send Message →';btn.style.background='';e.target.reset()},3000);
+}
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    document.querySelector(a.getAttribute('href'))?.scrollIntoView({behavior:'smooth'});
+  });
+});
+</script>
+</body>
+</html>
